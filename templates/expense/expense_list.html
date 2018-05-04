@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<table class="table table-dark">
+	<thead>
+		<tr>
+			<th>No.</th>
+			<th>Purpose</th>
+			<th>Amount</th>
+			<th>Date & Time</th>
+			<th>Edit & Delete</th>
+		</tr>
+	</thead>
+	<tbody>
+	<h2 style="text-align: center">* Daily Cost of SD Shoriot *</h2><br>
+	{% for expense in expenses %}
+		<tr>
+			<td>{{ forloop.counter }}</td>
+			<td>{{ expense.purpose }}</td>
+			<td>{{ expense.amount }}</td>
+			<td>{{ expense.date }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'update_expense' expense.id %}">Edit</a>
+				<a class="btn btn-danger" href="{% url 'delete_expense' expense.id %}">Delete</a>
+			</td>
+		</tr>
+	{% endfor %}	
+	</tbody>
+</table>
+<a class="btn btn-primary" href="{% url 'new_expense' %}">Add New Expense</a>	
+{% endblock %} 
